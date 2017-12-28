@@ -1,0 +1,6 @@
+"autoload": {
+    "psr-4": { 
+        "Wasm\\": "wasm/",
+        "Faba\\": "wsrc/app/fabalist/" 
+    }
+},

@@ -1,0 +1,6 @@
+services:
+    Wmod.Wasm.Grid.Slider.Store.SliderStore:
+        class: 
+            Wmod\Wasm\Grid\Slider\Store\SliderStore
+        arguments: 
+            - '@Wasm.Store.Manager.Em'

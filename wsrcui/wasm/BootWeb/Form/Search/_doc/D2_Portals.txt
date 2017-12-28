@@ -1,0 +1,34 @@
+React16 Update
+  -> Use portals for Modals
+3Options
+  -> Put components in store(Like in Faba-mobile App)
+    -> import CustomNthComponent from '~/.../Component';
+    -> <ModuleComponent CustomNthComponent={CustomNthComponent}/>
+      -> onOpenModal -> dispatch(openModal, {CC: CustomNthComponent})
+  -> Create component by id map
+    -> Not very comfortable for dynamic apps
+      -> Each module should add data to map
+      -> Like FormHoc should switch all cases
+        -> case 'FieldsWrap', case 'FieldWrap', case 'TextField', ...
+    -> <ModuleComponent CustomNthComponentId="ID"/>
+      -> onOpenModal -> dispatch(openModal, {CID: CustomNthComponentId})
+      -> Modal 
+        -> switch(this.props.CID)
+          -> case 'ID': return CustomNthComponent
+  -> Create Portal(Supported from 16.0.0)
+    -> Will be rendered to Body + Components can be passed from orig.render
+      -> Can look strange at first glance
+        -> But in reality it syncs well with React architecture
+          -> Pass components to Modal popups from original render
+             (You can exchange data between orig component && modal like
+              modal is React direct child, despite the fact that it is not 
+              child in DOM structure)
+Main+OfPortals
+  -> With Redux approach we should pass formId to FormSearchInput Component
+    -> Because we are required to interconnect data between input and
+       modal form. 
+  -> Alternativelly, you can store array indice in state, and onComponentUnmount
+     replace arr[indice] with empty obj {}. (Mark as removed)
+    -> FormSearchInput -> new index data.length + 1 -> set in state && store
+    -> Can be a problem if two components will get same New index before current
+       will be saved in store (Depends on React-Redux internal async cmds order)

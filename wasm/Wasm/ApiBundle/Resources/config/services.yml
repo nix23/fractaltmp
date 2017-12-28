@@ -1,0 +1,58 @@
+services:
+    # Response
+    Wasm.Api.Factory.ApiResponseFactory:
+        class: 
+            Wasm\ApiBundle\Factory\ApiResponseFactory
+        arguments: 
+            - '@request_stack'
+            - '@serializer'
+    # Event
+    Wasm.Api.EventListener.ApiExceptionSubscriber:
+        class: 
+            Wasm\ApiBundle\EventListener\ApiExceptionSubscriber
+        arguments:
+            - '%kernel.debug%'
+            - '@Wasm.Api.Factory.ApiResponseFactory'
+        tags:
+            - { name: kernel.event_subscriber }
+    Wasm.Api.EventListener.JsonRequestNormalizer:
+        class: 
+            Wasm\ApiBundle\EventListener\JsonRequestNormalizer
+        tags:
+            -
+                name: kernel.event_listener
+                event: kernel.request
+                method: onKernelRequest
+    # Data Pager
+    Wasm.Api.DataPager.DataPager:
+        class: 
+            Wasm\ApiBundle\DataPager\DataPager
+    Wasm.Api.DataPager.Cursor:
+        class: 
+            Wasm\ApiBundle\DataPager\Cursor
+        arguments:
+            - '@Wasm.Api.DataPager.DataPager'
+    # Serializer
+    Wasm.Api.Serializer.Encoder.ArrayEncoder:
+        class: 
+            Wasm\ApiBundle\Serializer\Encoder\ArrayEncoder
+        tags:
+            - { name: serializer.encoder }
+    Wasm.Api.Serializer.PropsTransformer.PropsTransformer:
+        class: 
+            Wasm\ApiBundle\Serializer\PropsTransformer\PropsTransformer
+        arguments:
+            - '@service_container'
+            - '@annotation_reader'
+    Wasm.Api.Serializer.Normalizer.PropsTransformerNormalizer:
+        class: 
+            Wasm\ApiBundle\Serializer\Normalizer\PropsTransformerNormalizer
+        arguments:
+            - '@Wasm.Api.Serializer.PropsTransformer.PropsTransformer'
+        tags:
+            - { name: serializer.normalizer }
+    Wasm.Api.Serializer.Normalizer.DateTimeNormalizer:
+        class: 
+            Wasm\ApiBundle\Serializer\Normalizer\DateTimeNormalizer
+        tags:
+            - { name: serializer.normalizer }

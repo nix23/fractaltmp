@@ -1,0 +1,16 @@
+.WasmBootBreakpoints__orientationWatcher:after {
+    content: "landscape";
+    display: none;
+}
+
+@media(orientation: landscape) {
+    .WasmBootBreakpoints__orientationWatcher:after {
+        content: "landscape";
+    }
+}
+
+@media(orientation: portrait) {
+    .WasmBootBreakpoints__orientationWatcher:after {
+        content: "portrait";
+    }
+}

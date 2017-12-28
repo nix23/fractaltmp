@@ -1,0 +1,38 @@
+Option1:
+
+<Root> --> Should always update height
+    <Slide> --> Position: 'absolute'
+        <HeightSetter/>
+    </Slide>
+</Root>
+
+Option2:
+
+<Root> --> Works, but can cause bugs
+    <HeightSetter>
+        <Slide/> --> Float: left || display: inline-block
+        <Slide/>
+    </HeightSetter>
+</Root>
+   Problems:
+       --> Single height for all Slides
+
+Option3:
+
+<Root> --> Should always update width to SUM(EachSlide width)
+    <Slide> --> Float: left || display: inline-block
+        <HeightSetter/>
+        <Content> or 
+        <JustContent/>
+    </Slide>
+</Root>
+    Problems:
+        --> Items jump before Width is updated
+        --> Setting width will affect paddingBottom: %(Relative to width)
+                (Because items are not positioned absolutely)
+                --> Will need to control widths instead of heights
+                (Set width of each item + Set Container width)
+        --> Items top is broken(Maybe just bug)
+
+How to not make elements JUMP before target width is set up
+(Set fake huge width????)

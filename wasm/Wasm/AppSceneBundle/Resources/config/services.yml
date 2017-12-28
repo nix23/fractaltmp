@@ -1,0 +1,29 @@
+services:
+    Wasm.AppScene.Cmd.CreateBreakpointsCmd:
+        class: Wasm\AppSceneBundle\Cmd\CreateBreakpointsCmd
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+    Wasm.AppScene.Cmd.CreateLayoutCmd:
+        class: Wasm\AppSceneBundle\Cmd\CreateLayoutCmd
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+    Wasm.AppScene.Cmd.CreateSceneCmd:
+        class: Wasm\AppSceneBundle\Cmd\CreateSceneCmd
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.Fs.File.Path'
+            - '@Wasm.Fs.File.Crud'
+            - '@Wasm.Form.Cmd.SubmitFormCmd'
+            - '@Wasm.Mod.Cmd.InstallCoreModInstanceCmd'
+    Wasm.AppScene.Cmd.AddSceneLayoutCmd:
+        class: Wasm\AppSceneBundle\Cmd\AddSceneLayoutCmd
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.Form.Cmd.SubmitFormCmd'
+            - '@Wasm.Mod.Cmd.InstallCoreModInstanceCmd'
+    Wasm.AppScene.Cmd.AddLayoutModInstanceCmd:
+        class: Wasm\AppSceneBundle\Cmd\AddLayoutModInstanceCmd
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.Form.Cmd.SubmitFormCmd'
+            - '@Wasm.Mod.Cmd.InstallCoreModInstanceCmd'

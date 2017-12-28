@@ -1,0 +1,24 @@
+services:
+    Wasm.Mod.Cmd.InstallModCmd:
+        class: Wasm\ModBundle\Cmd\InstallModCmd
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.Fs.File.Path'
+            - '@Wasm.Fs.File.Crud'
+            - '@Wasm.Form.Cmd.SubmitFormCmd'
+    Wasm.Mod.Cmd.InstallModInstanceCmd:
+        class: Wasm\ModBundle\Cmd\InstallModInstanceCmd
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.ModRender.Cmd.RenderModInstanceCmd'
+            - '@Wasm.Mod.Store.RenderStore'
+    Wasm.Mod.Cmd.InstallCoreModInstanceCmd:
+        class: Wasm\ModBundle\Cmd\InstallCoreModInstanceCmd
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.Mod.Cmd.InstallModInstanceCmd'
+            - '@Wasm.App.Store.PackageStore'
+    Wasm.Mod.Store.RenderStore:
+        class: Wasm\ModBundle\Store\RenderStore
+        arguments:
+            - '@Wasm.Store.Manager.Em'

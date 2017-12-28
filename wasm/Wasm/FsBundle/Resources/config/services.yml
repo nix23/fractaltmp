@@ -1,0 +1,147 @@
+services:
+    Wasm.Fs.File.Crud:
+        class:
+            Wasm\FsBundle\File\Crud
+    Wasm.Fs.File.Path:
+        class:
+            Wasm\FsBundle\File\Path
+        arguments:
+            - '@Wasm.Fs.FilePath.RootFilePath'
+            - '@Wasm.Fs.FilePath.ModFilePath'
+            - '@Wasm.Fs.FilePath.SrcFilePath'
+            - '@Wasm.Fs.FilePath.SrcuiFilePath'
+            - '@Wasm.Fs.FilePath.WebFilePath'
+    Wasm.Fs.FilePath.RootFilePath:
+        class:
+            Wasm\FsBundle\FilePath\RootFilePath
+        arguments:
+            - '@service_container'
+
+    # /wmod/
+    Wasm.Fs.FilePath.ModFilePath:
+        class:
+            Wasm\FsBundle\FilePath\ModFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.RootFilePath'
+            - '@Wasm.Fs.FilePath.Mod.VendorFilePath'
+    Wasm.Fs.FilePath.Mod.VendorFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Mod\VendorFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Mod.GroupFilePath'
+    Wasm.Fs.FilePath.Mod.GroupFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Mod\GroupFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Mod.ModFilePath'
+    Wasm.Fs.FilePath.Mod.ModFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Mod\ModFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Mod.BlueprintsFilePath'
+    Wasm.Fs.FilePath.Mod.BlueprintsFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Mod\BlueprintsFilePath
+
+    # /wsrc/
+    Wasm.Fs.FilePath.SrcFilePath:
+        class:
+            Wasm\FsBundle\FilePath\SrcFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.RootFilePath'
+            - '@Wasm.Fs.FilePath.Src.GroupFilePath'
+    Wasm.Fs.FilePath.Src.GroupFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Src\GroupFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Src.AppFilePath'
+    Wasm.Fs.FilePath.Src.AppFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Src\AppFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Src.SectionFilePath'
+    Wasm.Fs.FilePath.Src.SectionFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Src\SectionFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Src.PackageFilePath'
+    Wasm.Fs.FilePath.Src.PackageFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Src\PackageFilePath
+
+    # /wsrcui/
+    Wasm.Fs.FilePath.SrcuiFilePath:
+        class:
+            Wasm\FsBundle\FilePath\SrcuiFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.RootFilePath'
+            - '@Wasm.Fs.FilePath.Srcui.ModFilePath'
+            - '@Wasm.Fs.FilePath.Srcui.SrcFilePath'
+
+    # /wsrcui/wmod/
+    Wasm.Fs.FilePath.Srcui.ModFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Srcui\ModFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Srcui.Mod.VendorFilePath'
+    Wasm.Fs.FilePath.Srcui.Mod.VendorFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Srcui\Mod\VendorFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Srcui.Mod.GroupFilePath'
+    Wasm.Fs.FilePath.Srcui.Mod.GroupFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Srcui\Mod\GroupFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Srcui.Mod.ModFilePath'
+    Wasm.Fs.FilePath.Srcui.Mod.ModFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Srcui\Mod\ModFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Srcui.Mod.BlueprintsFilePath'
+    Wasm.Fs.FilePath.Srcui.Mod.BlueprintsFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Srcui\Mod\BlueprintsFilePath
+
+    # /wsrcui/wsrc/
+    Wasm.Fs.FilePath.Srcui.SrcFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Srcui\SrcFilePath
+        arguments:
+            - '@Wasm.Fs.Filepath.Srcui.Src.GroupFilePath'
+    # Group -> App -> Section -> Package
+    Wasm.Fs.FilePath.Srcui.Src.GroupFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Srcui\Src\GroupFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Srcui.Src.AppFilePath'
+    Wasm.Fs.Filepath.Srcui.Src.AppFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Srcui\Src\AppFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Srcui.Src.SectionFilePath'
+    Wasm.Fs.Filepath.Srcui.Src.SectionFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Srcui\Src\SectionFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Srcui.Src.PackageFilePath'
+    Wasm.Fs.Filepath.Srcui.Src.PackageFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Srcui\Src\PackageFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.Srcui.Src.Package.AppSceneFilePath'
+            - '@Wasm.Fs.FilePath.Srcui.Src.Package.WebSceneFilePath'
+    # /wsrcui/wsrc/Apps/DemoApp/App/App/ -> PackageDirs
+    Wasm.Fs.Filepath.Srcui.Src.Package.AppSceneFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Srcui\Src\Package\AppSceneFilePath
+    Wasm.Fs.Filepath.Srcui.Src.Package.WebSceneFilePath:
+        class:
+            Wasm\FsBundle\FilePath\Srcui\Src\Package\WebSceneFilePath
+
+    # /wweb/
+    Wasm.Fs.FilePath.WebFilePath:
+        class:
+            Wasm\FsBundle\FilePath\WebFilePath
+        arguments:
+            - '@Wasm.Fs.FilePath.RootFilePath'

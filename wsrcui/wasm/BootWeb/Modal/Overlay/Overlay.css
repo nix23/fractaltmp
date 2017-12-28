@@ -1,0 +1,39 @@
+.WasmBootModalOverlay__root {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    background: white;
+}
+
+.WasmBootModalOverlay__rootInsideEl {
+    position: absolute;
+}
+
+.WasmBootModalOverlay__root-enter {
+    opacity: 0;
+}
+
+.WasmBootModalOverlay__root-enter-active {
+    opacity: 0.7;
+    -webkit-transition: opacity 500ms ease;
+    -moz-transition: opacity 500ms ease;
+    -ms-transition: opacity 500ms ease;
+    -o-transition: opacity 500ms ease;
+    transition: opacity 500ms ease;
+}
+
+.WasmBootModalOverlay__root-leave {
+    opacity: 0.7;
+}
+
+.WasmBootModalOverlay__root-leave-active {
+    opacity: 0;
+    -webkit-transition: opacity 500ms ease;
+    -moz-transition: opacity 500ms ease;
+    -ms-transition: opacity 500ms ease;
+    -o-transition: opacity 500ms ease;
+    transition: opacity 500ms ease;
+}

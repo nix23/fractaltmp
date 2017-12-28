@@ -1,0 +1,49 @@
+.WasmBootGridSlider__root {
+    clear: both;
+    position: relative;
+    /* overflow: hidden; */
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px; /* @todo -> Move to props (By def 100%) */
+}
+
+.WasmBootGridSlider__slides {
+    position: relative;
+    width: 100%;
+    /* Inherit height from root, which is setted to 
+       content height(Current Slide) from JS */
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    opacity: 1;
+}
+
+.WasmBootGridSlider__slide {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.WasmBootGridSlider__slide:not(:first-child) {
+    position: absolute;
+    left: 100%;
+    top: 0px;
+}
+
+.WasmBootGridSlider__nav {
+
+}
+
+.WasmBootGridSlider__navItem {
+    display: inline-block;
+    background: red;
+    border: 1px red solid;
+    width: 20px;
+    height: 20px;
+}
+
+.WasmBootGridSlider__navItem--active {
+    background: yellow;
+}

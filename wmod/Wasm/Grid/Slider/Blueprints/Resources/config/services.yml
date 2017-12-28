@@ -1,0 +1,5 @@
+services:
+    <%PKGNAME%>.Store.<%MODNAME%>Store:
+        class: <%PKGCLASS%>\Store\<%MODNAME%>Store
+        arguments:
+            - '@Wmod.Wasm.Grid.Slider.Store.SliderStore'

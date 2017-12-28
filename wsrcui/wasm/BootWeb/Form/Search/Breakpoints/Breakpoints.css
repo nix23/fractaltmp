@@ -1,0 +1,10 @@
+.WasmBootFormSearchBreakpoints__widthWatcher:after {
+    content: "desktop";
+    display: none;
+}
+
+@media(max-width: 999px) {
+    .WasmBootFormSearchBreakpoints__widthWatcher:after {
+        content: "mobile";
+    }
+}

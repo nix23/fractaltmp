@@ -1,0 +1,9 @@
+FormSearch should not know anything about Breakpoints.
+FormSearch stores state with 'isMobile' alike prop.
+IsMobile - can be later refactored into separate Component
+    -> It can be not nec.-ry 'Breakpoints'
+        -> ScreenSizeDetectorByBreakpoints
+        -> ScreenSizeDetectorByNthParam...
+            -> Remember that in your case it can be enough for
+               Fractal to cover only 1 simple case 
+               -> in such case first version of script can be enough

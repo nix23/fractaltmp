@@ -1,0 +1,2 @@
+imports:
+    - { resource: '../../../../wmod/Wasm/Grid/Slider/Resources/config/services.yml' }

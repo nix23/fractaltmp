@@ -1,0 +1,81 @@
+VerifyRequest
+    verify: function(response) {
+        if(response.status >= 200 && response.status < 300) {
+            return response;
+        }
+        else {
+            let error = new Error(response.statusText);
+            error.response = response;
+            throw error;
+        }
+       // Usage
+       getItems: function() {
+          return fetch(someUrl)
+              .then(ApiUtils.checkStatus)
+              .then(response => response.json())
+              .catch(e => e)
+       }
+    }
+
+/*
+NtechApp.Ajax.prototype.enableTextLoading = function($item, useVal) {
+    var me = this;
+    var useVal = useVal || false;
+
+    var nextPoints = function(text) {
+        var dot1 = text[text.length - 3];
+        var dot2 = text[text.length - 2];
+        var dot3 = text[text.length - 1];
+
+        if(dot1 == "." && dot2 == "." && dot3 == ".")
+            return ".";
+        else if(dot2 == "." && dot3 == ".")
+            return "...";
+        else
+            return ".."
+    };
+
+    var text = $item.text();
+    var execStep = function() {
+        if($item.length == 0 || $item.hasClass("stopAjaxTextLoading")) return;
+        if(!useVal)
+            $item.text(text + nextPoints($item.text()));
+        else 
+            $item.val(text + nextPoints($item.val()));
+
+        me._textLoadingNextStepTimeout = setTimeout(execStep, 400);
+    };
+
+    if(!useVal)
+        $item.text(text + nextPoints(text));
+    else 
+        $item.val(text + nextPoints(text));
+    me._textLoadingNextStepTimeout = setTimeout(execStep, 400);
+};
+
+NtechApp.Ajax.prototype.disableTextLoading = function($item, useVal) {
+    var useVal = useVal || false;
+    clearTimeout(this._textLoadingNextStepTimeout);
+    if(!useVal)
+        $item.text($item.text().replace(/\./gi, ""));
+    else 
+        $item.val($item.text().replace(/\./gi, ""));
+};
+*/
+
+After fetch call (before completeRequest)
+   /*.then(response => {
+        let json = response.json();
+        json.then((res) => { 
+            // @todo -> onComplete?(Always -> Loader Off)
+            // @todo -> throw errs(onError(cb),onSingleError(cb),onDefError)
+            // @todo -> replace with popup
+            if(typeof res.error !== "undefined"
+                && typeof res.error.code !== "undefined"
+                && res.code == 500)
+                cl(res);
+        });
+
+        return json;
+    });*/
+    // .catch((e) => cl(e)); // @tmp -> Fix this

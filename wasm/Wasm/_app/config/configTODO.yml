@@ -1,0 +1,83 @@
+security:
+    encoders:
+        WasmBundle\Entity\Root: sha512
+        Ntech\CoreBundle\Entity\Admin: sha512
+        Ntech\CoreBundle\Entity\Account: sha512
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    providers:
+        wasm.root_provider:
+            entity: { class: WasmBundle\Entity\Root, property: username }
+        admin_provider:
+            entity: { class: Ntech\CoreBundle\Entity\Admin, property: username }
+        account_provider:
+            entity: { class: Ntech\CoreBundle\Entity\Account, property: login }
+#        in_memory:
+#            memory:
+#                users:
+#                    global_user:
+#                        password: test7333
+#                        roles: 'ROLE_GLOBAL_USER'
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+            security: false
+
+        wasm.root_area:
+            provider: wasm.root_provider
+            pattern: ^/wasm/root
+            anonymous: ~
+            form_login:
+                always_use_default_target_path: true
+                default_target_path: /wasm/root/dashboard
+                login_path: /wasm/root/auth/login
+                check_path: /wasm/root/auth/logincheck
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                path: /wasm/root/auth/logout
+                target: /wasm/root/auth/login
+                invalidate_session: false
+
+        admin_area:
+            provider: admin_provider
+            pattern: ^/admin/
+            anonymous: ~
+            form_login:
+                always_use_default_target_path: true
+                default_target_path: /admin/dashboard
+                login_path: /admin/login
+                check_path: /admin/login-check
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                path: /admin/logout
+                target: /admin/login
+                invalidate_session: false
+
+        client_area:
+            provider: account_provider
+            pattern: ^/
+            anonymous: ~
+            logout:
+                path: /account/logout
+                target: /
+            guard:
+                authenticators:
+                    #- ntech.personalFormLoginAuthenticator
+                    #- ntech.businessFormLoginAuthenticator
+                    - ntech.accountFormLoginAuthenticator
+                #entry_point: ntech.personalFormLoginAuthenticator
+                entry_point: ntech.accountFormLoginAuthenticator
+
+    access_control:
+        - { path: ^/wasm/root/auth/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/wasm/root/auth/logincheck, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/wasm/root, roles: ROLE_WASM_ROOT }
+        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login-check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/auth-login-check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/personal/login-check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/personal, roles: ROLE_PERSONAL }
+        #- { path: ^/business/login-check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/business, roles: ROLE_BUSINESS }

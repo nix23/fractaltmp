@@ -1,0 +1,31 @@
+@include media-breakpoint-min(xs) { ... }
+@include media-breakpoint-min(sm) { ... }
+@include media-breakpoint-min(md) { ... }
+@include media-breakpoint-min(lg) { ... }
+@include media-breakpoint-min(xl) { ... }
+
+// Example usage:
+@include media-breakpoint-max(sm) {
+  .some-class {
+    display: block;
+  }
+}
+
+
+
+@media (max-width: 1199px) { ... }
+@include media-breakpoint-max(xs) { ... }
+@include media-breakpoint-max(sm) { ... }
+@include media-breakpoint-max(md) { ... }
+@include media-breakpoint-max(lg) { ... }
+
+
+min - max
+@include media-breakpoint-only(xs) { ... }
+@include media-breakpoint-only(sm) { ... }
+@include media-breakpoint-only(md) { ... }
+@include media-breakpoint-only(lg) { ... }
+@include media-breakpoint-only(xl) { ... }
+
+
+@include media-breakpoint-between(md, xl) { ... }

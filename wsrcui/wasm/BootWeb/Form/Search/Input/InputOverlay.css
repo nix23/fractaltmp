@@ -1,0 +1,19 @@
+.WasmBootFormSearch__mobileInputOverlayRoot {
+    position: relative;
+    display: inline-block;
+}
+
+.WasmBootFormSearch__mobileInputOverlay {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    /* Prevents from bugs on mobile screen orientation changes */
+    max-width: 100%;
+}
+
+.WasmBootFormSearch__mobileInputOverlay--debug {
+    background: red !important;
+}

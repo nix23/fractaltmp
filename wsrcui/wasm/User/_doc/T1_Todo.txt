@@ -1,0 +1,30 @@
+User struct
+    -> Users + Accounts || Users + Accounts + Credentials
+
+Normalized struct
+    -> 1 User : N Accounts
+        -> 1 Registred account by default creates unique user
+            -> Should user have separate credentials?
+                -> Or 1 account by default copies credentials to User
+                -> Or if accs are linked can login with any data
+
+AuthModule in front
+    -> Not required
+        -> Store everything in /User or /User + /Account
+            -> Auth is built-in in Api in frontend so no separate module required
+
+User
+    -> N Accounts
+        -> 1 Account <> 1 Credential
+    ||
+    -> N Accounts
+    -> By default user have 1 Credentials 
+        -> User can assign additional credentials to Nth Account
+            -> Create new User assigned to same account???
+
+AccountsByGroups
+    -> Accounts can be added to Groups
+        -> Settings can be different for different groups
+
+ShareUsersBetweenApps?
+    -> ShopCms

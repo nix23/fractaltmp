@@ -1,0 +1,5 @@
+services:
+    Wasm.Store.Manager.Em:
+        class: Wasm\StoreBundle\Manager\Em
+        arguments:
+            - '@doctrine.orm.entity_manager'

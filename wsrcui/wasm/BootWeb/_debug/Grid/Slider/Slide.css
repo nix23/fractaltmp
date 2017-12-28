@@ -1,0 +1,11 @@
+.slideHeightSetter {
+    width: 100%;
+    padding-bottom: 40.91%;
+}
+
+.slideImage {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    max-width: 100%;
+}

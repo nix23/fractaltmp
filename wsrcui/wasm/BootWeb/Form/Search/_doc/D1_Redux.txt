@@ -1,0 +1,51 @@
+-> Deprecated (D2_Portals are used instead)
+
+-> Use redux by default (
+    It is hard to communicate between components without
+    Still requires DataLists which should get state from redux
+        (very hard without)
+    React is used with Redux in most-cases
+  )
+
+<FormSearch Input={InputOrCustomInput}>
+</FormSearch>
+
+FormSearch can be added anywhere in any component in ReactRoot components
+tree. It will render an input.
+
+Now we should create and render Search dom elements.
+Options:
+1) Create 'Portal' and render Search into BODY
+2) Raise redux action openSearch with input coords.
+    --> Redux <App> > <ModalViews> will mount searchComponent with params
+    --> All FormSearch logic will be contained inside that component
+3) SearchComponent should be rendered over top of all other modal components
+    (SearchComponent can be placed inside forms which are contained inside
+     child modal Forms)
+
+Cons(Redux)
+    --> Integrates well with other modals inside 'Fractal'
+    --> Don't hacks react render logic
+Pros(Redux)
+    --> Can't be used as separate React Component(Requires redux!!!)
+    Or write Portal connector && Redux connector????
+
+Redux:
+  -> add ability to render Array of modal components:
+  -> each have it's Component and priority
+  -> render components according to priority
+  -> all FormSearch components should be rendered over modals
+
+1. We have Search component.
+2. We have Search input component.
+
+1 Redux
+   Call showModal action with priority = X which will mount Search component
+   <FormSearch Input={InputOrCustomInput}>
+   </Form>
+2 Portal
+   Mount Search component through portal! 
+   <FormSearch Input={InputOrCustomInput}>
+        inside FormSearch
+        connect FormSearchBody manually into BODY through Portal!!!!
+   </Form>

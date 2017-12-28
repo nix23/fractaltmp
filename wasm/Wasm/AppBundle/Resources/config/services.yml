@@ -1,0 +1,44 @@
+services:
+    Wasm.App.Cli.InstallDefDataCmd:
+        class: Wasm\AppBundle\Cli\InstallDefDataCmd
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: console.command }
+    Wasm.App.Cmd.CreateGroupCmd:
+        class: Wasm\AppBundle\Cmd\CreateGroupCmd
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.Fs.File.Path'
+            - '@Wasm.Fs.File.Crud'
+            - '@Wasm.Form.Cmd.SubmitFormCmd'
+    Wasm.App.Cmd.CreateAppCmd:
+        class: Wasm\AppBundle\Cmd\CreateAppCmd
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.Fs.File.Path'
+            - '@Wasm.Fs.File.Crud'
+            - '@Wasm.Form.Cmd.SubmitFormCmd'
+            - '@Wasm.App.Cmd.CreateSectionCmd'
+            - '@Wasm.App.Cmd.CreatePackageCmd'
+            - '@Wasm.Mod.Cmd.InstallCoreModInstanceCmd'
+    Wasm.App.Cmd.CreateSectionCmd:
+        class: Wasm\AppBundle\Cmd\CreateSectionCmd
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.Fs.File.Path'
+            - '@Wasm.Fs.File.Crud'
+            - '@Wasm.Form.Cmd.SubmitFormCmd'
+            - '@Wasm.Mod.Cmd.InstallCoreModInstanceCmd'
+    Wasm.App.Cmd.CreatePackageCmd:
+        class: Wasm\AppBundle\Cmd\CreatePackageCmd
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.Fs.File.Path'
+            - '@Wasm.Fs.File.Crud'
+            - '@Wasm.Form.Cmd.SubmitFormCmd'
+            - '@Wasm.Mod.Cmd.InstallCoreModInstanceCmd'
+    Wasm.App.Store.PackageStore:
+        class: Wasm\AppBundle\Store\PackageStore
+        arguments:
+            - '@Wasm.Store.Manager.Em'

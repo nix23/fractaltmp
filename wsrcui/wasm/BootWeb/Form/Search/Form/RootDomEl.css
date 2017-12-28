@@ -1,0 +1,76 @@
+.WasmBootFormSearch__root {
+    display: none;
+    overflow: hidden;
+    background: white;
+    border: 1px rgb(190,190,190) solid;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1000;
+    min-height: 140px;
+    /*-webkit-transition: height 300ms ease, transform 200ms cubic-bezier(.4,.2,.5,1.4), opacity 200ms cubic-bezier(.4,.2,.5,1.4)*/
+    /*-moz-transition: height 300ms ease, transform 200ms cubic-bezier(.4,.2,.5,1.4), opacity 200ms cubic-bezier(.4,.2,.5,1.4)*/
+    /*-ms-transition: height 300ms ease, transform 200ms cubic-bezier(.4,.2,.5,1.4), opacity 200ms cubic-bezier(.4,.2,.5,1.4)*/
+    /*-o-transition: height 300ms ease, transform 200ms cubic-bezier(.4,.2,.5,1.4), opacity 200ms cubic-bezier(.4,.2,.5,1.4)*/
+    /*transition: height 300ms ease, transform 200ms cubic-bezier(.4,.2,.5,1.4), opacity 200ms cubic-bezier(.4,.2,.5,1.4)*/
+    -webkit-transition: height 300ms ease, transform 300ms ease, opacity 300ms ease;
+    -moz-transition: height 300ms ease, transform 300ms ease, opacity 300ms ease;
+    -ms-transition: height 300ms ease, transform 300ms ease, opacity 300ms ease;
+    -o-transition: height 300ms ease, transform 300ms ease, opacity 300ms ease;
+    transition: height 300ms ease, transform 300ms ease, opacity 300ms ease;
+    -webkit-transform-origin: 50% 0;
+    -moz-transform-origin: 50% 0;
+    -o-transform-origin: 50% 0;
+    -ms-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    -ms-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.WasmBootFormSearch__root--display {
+    display: block;
+}
+
+@media(max-width: 999px) {
+    .WasmBootFormSearch__root {
+        position: fixed;
+        width: 100% !important;
+        height: 100% !important;
+        left: 0px !important;
+        top: 0px !important;
+        -webkit-transform-origin: 50% 50%;
+        -moz-transform-origin: 50% 50%;
+        -o-transform-origin: 50% 50%;
+        -ms-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }
+
+    .WasmBootFormSearch__root--render {
+        -webkit-transform: translate3d(0%, 0, 0);
+        -ms-transform: translate3d(0%, 0, 0);
+        transform: translate3d(0%, 0, 0);
+    }
+}
+
+@media(min-width: 1000px) {
+    .WasmBootFormSearch__root {
+        opacity: 0;
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+.WasmBootFormSearch__root--render {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}

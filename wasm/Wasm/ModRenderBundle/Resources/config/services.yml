@@ -1,0 +1,23 @@
+services:
+    Wasm.ModRender.Cmd.RenderModInstanceCmd:
+        class: Wasm\ModRenderBundle\Cmd\RenderModInstanceCmd
+        arguments:
+            - '@Wasm.Fs.File.Path'
+            - '@Wasm.Fs.File.Crud'
+            - '@Wasm.ModRender.Blueprints.ScanModBlueprints'
+            - '@Wasm.ModRender.Blueprints.RenderBlueprint'
+    Wasm.ModRender.Blueprints.ScanModBlueprints:
+        class: Wasm\ModRenderBundle\Blueprints\ScanModBlueprints
+        arguments:
+            - '@Wasm.Fs.File.Path'
+            - '@Wasm.Fs.File.Crud'
+    Wasm.ModRender.Blueprints.RenderBlueprint:
+        class: Wasm\ModRenderBundle\Blueprints\RenderBlueprint
+        arguments:
+            - '@Wasm.ModRender.Twig.Twig'
+    Wasm.ModRender.Generator.Generator:
+        class: Wasm\ModRenderBundle\Generator\Generator
+    Wasm.ModRender.Twig.Twig:
+        class: Wasm\ModRenderBundle\Twig\Twig
+        arguments:
+            - '@Wasm.Fs.File.Path'

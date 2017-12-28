@@ -1,0 +1,6 @@
+CSSTransitionGroup
+    -> - Can't override animations in the middle
+        -> Override enter with leave
+
+CustomAnimations
+    -> HOC with timeouts

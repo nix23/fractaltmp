@@ -1,0 +1,45 @@
+You can make all breakpoints editable on Backend
+    -> At least you can add additional breakpoints
+
+/*resolveInitialBreakpoints() {
+    // (This will be overriden by resize trigger)
+    let windowWidth = window.innerWidth;
+    let value = "desktop";
+    let postfix = "";
+
+    if(windowWidth >= 600 && windowWidth <= 999)
+        value = "mobile";
+    else if(windowWidth <= 599) {
+        value = "mobile";
+        postfix = "599";
+    }
+
+    this.props.setBreakpoint(value, postfix);
+}*/
+
+    resolveNextWidthBreakpoint() {
+        let value = this.getBreakpointValue(this.widthWatcher);
+        
+        let nextValue = value.split("-");
+        let nextPostfix = "";
+
+        if(nextValue.length == 2) {
+            nextPostfix = nextValue[1];
+            nextValue = nextValue[0];
+        }
+        else {
+            nextValue = nextValue[0];
+        }
+
+        this.props.setBreakpoint(nextValue, nextPostfix);
+    }
+
+    const equals = (value, postfix) => (dispatch, getState) => {
+    let state = getState();
+    let valueMatched = (value == state.app.breakpoints.value);
+
+    if(typeof postfix == "undefined")
+        return valueMatched;
+
+    return valueMatched && state.app.breakpoints.postfix == postfix;
+};

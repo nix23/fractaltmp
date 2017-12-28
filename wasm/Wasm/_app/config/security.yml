@@ -1,0 +1,22 @@
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    providers:
+        in_memory:
+            memory:
+                users:
+                    global_user:
+                        password: test7333
+                        roles: 'ROLE_GLOBAL_USER'
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+            security: false
+        default:
+            pattern: ^/
+            anonymous: ~
+
+    access_control:
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

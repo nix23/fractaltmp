@@ -1,0 +1,26 @@
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: fractal
+    database_user: root
+    database_password: null
+    database_fixtures_mode: all
+    mailer_transport: sendmail
+    mailer_host: null
+    mailer_user: serverglobaltex@gmail.com
+    mailer_password: Globaltex2015
+    locale: en
+    secret: ThisTokenIsNotSoSecretChangeIt
+    admin.username: 546456
+    admin.password: trhrthrth
+    mailgun_key: yyyy
+    mailgun_domain: jrtjtyjtyj
+    googlemaps_key: yyyy
+    facebook_id: '4444'
+    facebook_secret: hrhrh
+    linkedin_id: 436346
+    linkedin_secret: reherherh
+    use_fake_accounts_for_job_alert_emails: true
+    remember_me_secret: gewgwg
+    admin_emails:
+        - szdszdszd@inbox.lv

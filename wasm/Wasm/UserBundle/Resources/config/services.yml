@@ -1,0 +1,5 @@
+services:
+    Wasm.User.Manager.Um:
+        class: Wasm\UserBundle\Manager\Um
+        arguments:
+            - '@security.token_storage'

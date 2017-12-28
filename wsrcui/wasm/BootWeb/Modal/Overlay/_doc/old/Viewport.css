@@ -1,0 +1,12 @@
+.WasmBootModalOverlay__viewportRoot {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.WasmBootModalOverlay__viewportRoot--display {
+    display: block;
+}

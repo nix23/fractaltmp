@@ -1,0 +1,170 @@
+services:
+    # Command
+    Wasm.Form.Cmd.PersistFormCmd:
+        class: 
+            Wasm\FormBundle\Cmd\PersistFormCmd
+        arguments: 
+            - '@Wasm.Form.Transformer.RequestTransformer'
+            - '@Wasm.Form.Transformer.StateTransformer'
+            - '@Wasm.Form.Field.FieldsReader'
+            - '@Wasm.Form.Validator.Validator'
+            - '@Wasm.Form.Store.Store'
+    Wasm.Form.Cmd.ValidateFormCmd:
+        class: 
+            Wasm\FormBundle\Cmd\ValidateFormCmd
+        arguments:
+            - '@Wasm.Form.Transformer.RequestTransformer'
+            - '@Wasm.Form.Transformer.StateTransformer'
+            - '@Wasm.Form.Field.FieldsReader'
+            - '@Wasm.Form.Validator.Validator'
+    Wasm.Form.Cmd.SubmitFormCmd:
+        class:
+            Wasm\FormBundle\Cmd\SubmitFormCmd
+        arguments:
+            - '@Wasm.Form.Cmd.PersistFormCmd'
+            - '@Wasm.Form.Model.StoreData'
+    Wasm.Form.Cmd.TransformFormCmd:
+        class: 
+            Wasm\FormBundle\Cmd\TransformFormCmd
+        arguments:
+            - '@request_stack'
+            - '@Wasm.Form.Transformer.RequestTransformer'
+            - '@Wasm.Form.Transformer.StateTransformer'
+            - '@Wasm.Form.Field.FieldsReader'
+    # @todo -> Fix + move to geoBundle?
+    # wasm.form.command.findFormAddressCoords:
+        # class: 
+            # Wasm\FormBundle\Command\FindFormAddressCoordsCmd
+        # arguments:
+            # - '@geocoder' 
+            # - '@wasm.apiResponseFactory'
+    # Model
+    Wasm.Form.Model.StoreData:
+        class: 
+            Wasm\FormBundle\Model\StoreData
+    # Repo
+    Wasm.Form.Repo.FormRepo:
+        class: 
+            Wasm\FormBundle\Repo\FormRepo
+        arguments:
+            - '@Wasm.Form.Transformer.RequestTransformer'
+            - '@Wasm.Form.Field.FieldsReader'
+            - '@Wasm.Form.Field.FieldDataResolver'
+            - '@Wasm.Form.StateFactory.StateFactory'
+    # Factory
+    Wasm.Form.Factory.ClassReader:
+        class: 
+            Wasm\FormBundle\Factory\ClassReader
+    Wasm.Form.Factory.FormFactory:
+        class: 
+            Wasm\FormBundle\Factory\FormFactory
+    # StateFactory
+    Wasm.Form.StateFactory.StateFactory:
+        class: 
+            Wasm\FormBundle\StateFactory\StateFactory
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+            # - '@ntech_upload'
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.User.Manager.Um'
+            - '@Wasm.Form.StateFactory.EntityFactory'
+            - '@Wasm.Form.Transformer.EntityTransformer'
+    Wasm.Form.StateFactory.EntityFactory:
+        class: 
+            Wasm\FormBundle\StateFactory\EntityFactory
+        arguments:
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.User.Manager.Um'
+    # Transformer
+    Wasm.Form.Transformer.RequestTransformer:
+        class: 
+            Wasm\FormBundle\Transformer\RequestTransformer
+        arguments:
+            - '@Wasm.Form.Factory.ClassReader'
+            - '@Wasm.Form.Form.FormReader'
+    Wasm.Form.Transformer.StateTransformer:
+        class: 
+            Wasm\FormBundle\Transformer\StateTransformer
+        arguments:
+            - '@Wasm.Form.Factory.FormFactory'
+            - '@Wasm.Store.Manager.Em'
+    Wasm.Form.Transformer.EntityTransformer:
+        class: 
+            Wasm\FormBundle\Transformer\EntityTransformer
+    # Field
+    Wasm.Form.Field.FieldDataResolver:
+        class: 
+            Wasm\FormBundle\Field\FieldDataResolver
+        arguments:
+            - '@service_container'
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.Form.Transformer.EntityTransformer'
+    Wasm.Form.Field.FieldsReader:
+        class: 
+            Wasm\FormBundle\Field\FieldsReader
+        arguments:
+            - '@annotation_reader'
+            - '@Wasm.Form.Field.FieldDataResolver'
+    # Form
+    Wasm.Form.Form.FormReader:
+        class: 
+            Wasm\FormBundle\Form\FormReader
+        arguments:
+            - '@annotation_reader'
+    # Store
+    Wasm.Form.Store.Store:
+        class: 
+            Wasm\FormBundle\Store\Store
+        arguments:
+            - '@service_container'
+            - '@Wasm.Form.Transformer.StateTransformer'
+            - '@Wasm.Store.Manager.Em'
+            - '@Wasm.Form.StateFactory.EntityFactory'
+    # Validator
+    Wasm.Form.Validator.Validator:
+        class: 
+            Wasm\FormBundle\Validator\Validator
+        arguments:
+            - '@Wasm.Api.Factory.ApiResponseFactory'
+            - '@Wasm.Form.Factory.FormFactory'
+            - '@validator'
+            - '@Wasm.Form.Validator.CollectionValidator'
+    # Collection Validators
+    Wasm.Form.Validator.CollectionValidator:
+        class: Wasm\FormBundle\Validator\CollectionValidator
+    Wasm.Form.Validator.Constraints.Collection.CountCollectionStatesValidator:
+        class: Wasm\FormBundle\Validator\Constraints\Collection\CountCollectionStatesValidator
+        arguments:
+            - '@Wasm.Form.Validator.CollectionValidator'
+        tags:
+            - { name: validator.constraint_validator }
+    # Validators @todo -> Move to ApiFormValidator|Validator bundle?
+    Wasm.Form.Validator.Constraints.Symfony.NotBlankNumberValidator:
+        class:
+            Wasm\FormBundle\Validator\Constraints\Symfony\NotBlankNumberValidaotr
+        arguments:
+            - '@validator'
+        tags:
+            - { name: validator.constraint_validator }
+    Wasm.Form.Validator.Constraints.DateTime.IsValidEndDateValidator:
+        class:
+            Wasm\FormBundle\Validator\Constraints\DateTime\IsValidEndDateValidator
+        arguments:
+            - '@validator'
+        tags:
+            - { name: validator.constraint_validator }
+    Wasm.Form.Validator.Constraints.Location.AddressHasLocationValidator:
+        class: 
+            Wasm\FormBundle\Validator\Constraints\Location\AddressHasLocationValidator
+        arguments:
+            # - '@geocoder'
+            - '@doctrine.orm.entity_manager'
+        tags:
+            - { name: validator.constraint_validator }
+    Wasm.Form.Validator.Constraints.Entity.IsUniqueValidator:
+        class: 
+            Wasm\FormBundle\Validator\Constraints\Entity\IsUniqueValidator
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags:
+            - { name: validator.constraint_validator }
